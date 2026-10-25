@@ -8,11 +8,25 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-API_KEY = os.getenv("SARVAM_API_KEY", "")
-STT_MODEL = os.getenv("SARVAM_STT_MODEL", "saaras:v3")
-LLM_MODEL = os.getenv("SARVAM_LLM_MODEL", "sarvam-105b-conversations")
-TTS_MODEL = os.getenv("SARVAM_TTS_MODEL", "bulbul:v3")
-TTS_SPEAKER = os.getenv("SARVAM_TTS_SPEAKER", "tanya")
+
+def _get(name: str, default: str = "") -> str:
+    """Read a setting from env vars / .env first, then Streamlit Cloud secrets."""
+    val = os.getenv(name)
+    if val:
+        return val.strip()
+    try:
+        import streamlit as st
+
+        return str(st.secrets.get(name, default)).strip()
+    except Exception:
+        return default
+
+
+API_KEY = _get("SARVAM_API_KEY")
+STT_MODEL = _get("SARVAM_STT_MODEL", "saaras:v3")
+LLM_MODEL = _get("SARVAM_LLM_MODEL", "sarvam-105b")
+TTS_MODEL = _get("SARVAM_TTS_MODEL", "bulbul:v2")
+TTS_SPEAKER = _get("SARVAM_TTS_SPEAKER", "anushka")
 
 BASE = "https://api.sarvam.ai"
 HEADERS = {"api-subscription-key": API_KEY}
