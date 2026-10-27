@@ -22,14 +22,14 @@ def _get(name: str, default: str = "") -> str:
         return default
 
 
-API_KEY = _get("SARVAM_API_KEY")
+SARVAM_API_KEY = _get("SARVAM_API_KEY")
 STT_MODEL = _get("SARVAM_STT_MODEL", "saaras:v3")
-LLM_MODEL = _get("SARVAM_LLM_MODEL", "sarvam-105b")
-TTS_MODEL = _get("SARVAM_TTS_MODEL", "bulbul:v2")
-TTS_SPEAKER = _get("SARVAM_TTS_SPEAKER", "anushka")
+LLM_MODEL = _get("SARVAM_LLM_MODEL", "sarvam-105b-conversations")
+TTS_MODEL = _get("SARVAM_TTS_MODEL", "bulbul:v3")
+TTS_SPEAKER = _get("SARVAM_TTS_SPEAKER", "tanya")
 
 BASE = "https://api.sarvam.ai"
-HEADERS = {"api-subscription-key": API_KEY}
+HEADERS = {"api-subscription-key": SARVAM_API_KEY}
 
 
 class SarvamError(Exception):

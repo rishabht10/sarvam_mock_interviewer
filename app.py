@@ -2,15 +2,19 @@ import streamlit as st
 
 from interviewer import final_report, next_question
 from resume import extract_text
-from sarvam_client import API_KEY, SarvamError, stt, tts
+from sarvam_client import SARVAM_API_KEY, SarvamError, stt, tts
 
 st.set_page_config(page_title="Mock Interviewer", page_icon="🎙️")
 st.title("🎙️ Mock Interviewer")
 st.caption("Upload your resume. Get interviewed by voice. Get a feedback report.")
 
-if not API_KEY:
-    st.error("SARVAM_API_KEY not found. Create a .env file (see .env.example).")
-    st.stop()
+import sarvam_client
+
+if not SARVAM_API_KEY:
+    key = st.text_input("Paste your Sarvam API key to start", type="password")
+    if not key.strip():
+        st.stop()
+    sarvam_client.HEADERS["api-subscription-key"] = key.strip()
 
 ss = st.session_state
 for k, v in {"started": False, "done": False, "history": [], "question": "",
