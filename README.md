@@ -8,7 +8,7 @@ Upload your resume, get interviewed by voice in an Indian-English or Hindi voice
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://sarvammockinterviewer-fapappjdxskyt4v795crvwc.streamlit.app/)
 
-**🔗 Live demo:** LIVE_DEMO_URL
+**🔗 Live demo:** https://sarvammockinterviewer-fapappjdxskyt4v795crvwc.streamlit.app/
 
 </div>
 
